@@ -1,0 +1,20 @@
+name: Terraform Plan / Apply
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "terraform/**"
+      - ".github/workflows/tf-create.yml"
+  pull_request:
+    paths:
+      - "terraform/**"
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    uses: rdavis542/aws-github-workflows/.github/workflows/tf-plan-apply.yml@main
+    with:
+      aws_region: us-east-2
+      tf_vars: '{"region":"us-east-2"}'
+    secrets: inherit

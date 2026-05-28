@@ -1,0 +1,21 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_destroy:
+        description: 'Type "destroy" to confirm'
+        required: true
+        type: string
+      target_resource:
+        description: "Optional: specific resource to destroy (e.g. aws_iam_user.this[\"alice\"])"
+        required: false
+        type: string
+
+jobs:
+  terraform:
+    uses: rdavis542/aws-github-workflows/.github/workflows/tf-destroy.yml@main
+    with:
+      aws_region: us-east-2
+      tf_vars: '{"region":"us-east-2"}'
+    secrets: inherit
