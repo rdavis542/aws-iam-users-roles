@@ -15,6 +15,9 @@ on:
 jobs:
   terraform:
     uses: rdavis542/aws-github-workflows/.github/workflows/tf-destroy.yml@main
+    permissions:
+      contents: read
+      id-token: write
     with:
       aws_region: us-east-2
       tf_vars: '{"region":"us-east-2"}'
